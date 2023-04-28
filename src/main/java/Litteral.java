@@ -13,7 +13,7 @@ public class Litteral {
     private String litteral;
 
     /**
-     * Constructeur du litteral. Initie le litteral en entier puis determine son {@code this.id} (la lettre) et si il est precede
+     * Constructeur du litteral. Initie le litteral en entier puis determine son {@code this.id} (le numero) et si il est precede
      * de {@code this.neg}.
      * @param litteral
      */
@@ -35,11 +35,27 @@ public class Litteral {
         return valeur;
     }
 
+    /**
+     * Renvoie le litterale sous forme de string
+     * @return String qui correspond au litterale. Ex : "!x" ou "x"
+     */
+    public String litteralToString(){
+        if(neg)
+            return "!"+id;
+        return id+"";
+    }
     private void setId(){
-
+        int indice = 0;
+        if(neg)
+            indice = 1;
+        //On converti le numero obtenu en int. Puis on l'ajoute a y pour obtenir la i lettre apres y.
+        id = (char) ('y'+(int) litteral.charAt(indice));
     }
     private void setNeg(){
-
+        if(litteral.charAt(0) == '-') {
+            neg = true;
+        }
+        neg = false;
     }
 
 }

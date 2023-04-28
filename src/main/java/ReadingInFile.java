@@ -16,6 +16,15 @@ public class ReadingInFile {
         initiateReader();
         setNombreLigne();
     }
+
+    /**
+     * Acceder au nombre maxium de ligne dans le fichier
+     * @return le nombre de ligne maximum dans le fichier
+     */
+    public int getNombreLignes(){
+        return nombreLignes;
+    }
+
     /*
     Cette methode permet d'initialiser le reader du fichier.
     Utile pour initialiser < BufferedReader br >.
@@ -52,6 +61,7 @@ public class ReadingInFile {
      * @throws RuntimeException si une erreur d'entrée/sortie se produit lors de la lecture du fichier.
      */
     public String readingInFile(int n){
+        initiateReader(); //On re-initiallise le reader pour etre sur qu'il lit depuis le debut du fichier
         if(n<=0 || n > nombreLignes)
             throw new IllegalArgumentException("L'argument n : " + n + "doit etre compris entre [1,"+nombreLignes+"].");
         String line = "";
