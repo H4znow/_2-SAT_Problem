@@ -11,7 +11,7 @@ public class GraphImplication {
     String command = "dot -Tpng input.dot -o output.png";
     ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/c", command);
     private void test(){
-        pb.directory(new File("C:\\chemin\\vers\\le\\dossier\\du\\fichier\\"));
+        pb.directory(new File("resources/graph"));
         pb.redirectErrorStream(true);
         try {
             Process process = pb.start();
