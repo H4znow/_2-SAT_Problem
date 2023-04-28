@@ -19,8 +19,6 @@ public class Main {
 
     public static void main(String[] args) {
         thereIsAnArgument(args);
-        ReadingInFile rf = new ReadingInFile(file);
-
-
+        Programme programme = new Programme(file);
     }
 }

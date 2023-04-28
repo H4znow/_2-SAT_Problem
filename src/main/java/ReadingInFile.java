@@ -31,6 +31,13 @@ public class ReadingInFile {
     Egalement utile pour re-"pointer" sur le debut du fichier (1ere ligne).
      */
     private void initiateReader(){
+        if(br!=null) {
+            try {
+                br.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
         try {
             br = new BufferedReader(new FileReader(file));
         } catch (FileNotFoundException e) {
@@ -69,7 +76,7 @@ public class ReadingInFile {
             try {
                 line = br.readLine();
             }catch (IOException e){
-                throw new RuntimeException(e);
+                throw new RuntimeException("Erreur dans la lecture de la ligne "+i);
             }
         }
         return line;

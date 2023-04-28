@@ -4,7 +4,9 @@
 public class Litteral {
 
     //Les litteraux sont uniques. Chacun se differencie de l'autre via la lettre qu'il lui a ete attribue.
-   private char id;
+   private char idLettre;
+   //Stock le numero de la variable
+   private int idInt;
 
    //Pour determiner si c'est un neg-litterale (precede d'un non ou pas)
     private boolean neg;
@@ -20,7 +22,7 @@ public class Litteral {
     public Litteral(String litteral){
         this.litteral =litteral;
         setNeg();
-        setId();
+        setIds();
     }
 
     /**
@@ -41,27 +43,36 @@ public class Litteral {
         return new Litteral("-"+litteral);
     }
 
+    public int getId() {
+        return idInt;
+    }
+
     /**
      * Renvoie le litterale sous forme de string
      * @return String qui correspond au litterale. Ex : "!x" ou "x"
      */
     public String litteralToString(){
         if(neg)
-            return "!"+id;
-        return id+"";
+            return "!"+idLettre;
+        return idLettre+"";
     }
-    private void setId(){
+    private void setIds(){
         int indice = 0;
         if(neg)
             indice = 1;
         //On converti le numero obtenu en int. Puis on l'ajoute a y pour obtenir la i lettre apres y.
-        id = (char) ('y'+(int) litteral.charAt(indice));
+        idInt = Character.getNumericValue(litteral.charAt(indice));
+        idLettre= (char) ('w'+(int) litteral.charAt(indice));
     }
     private void setNeg(){
         if(litteral.charAt(0) == '-') {
             neg = true;
+            return;
         }
         neg = false;
+    }
+    public boolean getNeg(){
+        return neg;
     }
 
 }

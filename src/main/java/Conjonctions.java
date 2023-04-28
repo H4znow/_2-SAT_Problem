@@ -15,8 +15,8 @@ public class Conjonctions {
         this.readingInFile = rf;
         maxLignes = readingInFile.getNombreLignes();
         initialiserLesClauses();
-        nombreLitterauxTotaux();
-        nombreLitterauxTotaux();
+        nombreLitterauxTotaux = nombreLitterauxTotaux();
+        nombreClausesTotaux = nombreClauseTotaux();
     }
 
     public Clause[] getClauses(){
@@ -41,8 +41,10 @@ public class Conjonctions {
         return Integer.parseInt(parts[3]);
     }
     private void initialiserLesClauses(){
+        clauses = new LinkedList<Clause>();
         for (int i = 3; i <= maxLignes; i++) {
-            clauses.add(new Clause(readingInFile.readingInFile(i)));
+            String arg = readingInFile.readingInFile(i);
+            clauses.add(new Clause(arg));
         }
     }
 }
