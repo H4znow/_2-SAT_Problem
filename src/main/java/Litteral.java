@@ -24,17 +24,6 @@ public class Litteral {
     }
 
     /**
-     * Un autre constructeur si on veut forcer la creation du litteral avec ou sans negation
-     * @param litteral le string qui represente le litteral qu'on represente
-     * @param neg la valeur de neg (vrai ou faux) Si vrai alors le litteral est initie avec
-     */
-    public Litteral(String litteral, boolean neg){
-        this.litteral =litteral;
-        this.neg = neg;
-        setId();
-    }
-
-    /**
      * Pour determiner la valeur retourner par le litteral lorsqu'il est evalue avec VRAI OU FAUX.
      * @param valeur la valeur que la methode evalue (VRAI ou FAUX)
      * @return la {@code valeur} inverse si le litteral est precede de {@code this.neg}. Autrement, elle retourne simplement
@@ -44,6 +33,12 @@ public class Litteral {
         if (neg)
             return !valeur;
         return valeur;
+    }
+
+    public Litteral negLitteral(){
+        if (neg)
+            return new Litteral(litteral.charAt(1)+"");
+        return new Litteral("-"+litteral);
     }
 
     /**

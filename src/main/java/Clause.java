@@ -23,7 +23,14 @@ public class Clause {
         return clauseInString;
     }
 
-    private void creerLitterauxDeLaClause(){
+    public Litteral[] getLitterauxDeLaClause() {
+        return litterauxDeLaClause;
+    }
 
+    private void creerLitterauxDeLaClause(){
+        String[] parts = clauseString.split("\\s+");
+        litterauxDeLaClause = new Litteral[2];
+        litterauxDeLaClause[0] = new Litteral(parts[0]);
+        litterauxDeLaClause[1] = new Litteral(parts[1]);
     }
 }

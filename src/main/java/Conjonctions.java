@@ -41,7 +41,7 @@ public class Conjonctions {
         return Integer.parseInt(parts[3]);
     }
     private void initialiserLesClauses(){
-        for (int i = 1; i <= maxLignes; i++) {
+        for (int i = 3; i <= maxLignes; i++) {
             clauses.add(new Clause(readingInFile.readingInFile(i)));
         }
     }
