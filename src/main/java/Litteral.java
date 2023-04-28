@@ -19,8 +19,19 @@ public class Litteral {
      */
     public Litteral(String litteral){
         this.litteral =litteral;
-        setId();
         setNeg();
+        setId();
+    }
+
+    /**
+     * Un autre constructeur si on veut forcer la creation du litteral avec ou sans negation
+     * @param litteral le string qui represente le litteral qu'on represente
+     * @param neg la valeur de neg (vrai ou faux) Si vrai alors le litteral est initie avec
+     */
+    public Litteral(String litteral, boolean neg){
+        this.litteral =litteral;
+        this.neg = neg;
+        setId();
     }
 
     /**

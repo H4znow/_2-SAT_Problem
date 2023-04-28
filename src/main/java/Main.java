@@ -21,5 +21,6 @@ public class Main {
         thereIsAnArgument(args);
         ReadingInFile rf = new ReadingInFile(file);
 
+
     }
 }
