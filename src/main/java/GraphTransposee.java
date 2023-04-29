@@ -1,7 +1,16 @@
+/**
+ * Classe qui represenet le graph transposee Gt de G
+ */
 public class GraphTransposee implements Graph{
     private Graph graph;
     private int[][] graphMatrice;
     private String[] litterauxDuTableau;
+
+    /**
+     * Constructeur pour initier les attributs
+     * @param conj la {@link Conjonctions} du probleme
+     * @param graph le {@link GraphImplication} dont on va determiner la transposee
+     */
     public GraphTransposee(Conjonctions conj, Graph graph){
         this.graph = graph;
         graphMatrice = creerMatriceTransposee(graph.getGraphMatrice());
