@@ -11,6 +11,11 @@ public class ReadingInFile {
     private int nombreLignes;
     //BufferedReader permet de lire dans le fichier
     private BufferedReader br;
+
+    /**
+     * Constructeur de la class
+     * @param file fichier a lire
+     */
     public ReadingInFile(File file){
         this.file = file;
         initiateReader();

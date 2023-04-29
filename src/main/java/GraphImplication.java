@@ -3,6 +3,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Cette classe représente une implémentation de l'interface Graph qui permet de représenter
+ * les implications entre les littéraux d'une conjonction.
+ */
 public class GraphImplication implements Graph {
 
     /*
@@ -14,14 +18,16 @@ public class GraphImplication implements Graph {
      */
 
     private int[][] graphMatrice;
-    private List<Litteral> litteraux;
     private Clause[] clauses;
     private Conjonctions conj;
 
-    GraphImplication(Conjonctions conj){
+    /**
+     * Constructeur de la class
+     * @param conj la conjonction (ensemble des clauses) qu'il utilise pour deduire lles implications entre litteraux
+     */
+    public GraphImplication(Conjonctions conj){
         this.conj= conj;
         clauses = conj.getClauses();
-        setLitteraux();
         initialiserGraph();
     }
 
@@ -60,6 +66,10 @@ public class GraphImplication implements Graph {
         }
     }
 
+    /**
+     * Methode pour initier dans un premier temps le tableau a 0. Elle determine ensuite les arc en remplissant
+     * le tableau via {@code this.determinerLesArcDuGraph}
+     */
     private void initialiserGraph(){
         graphMatrice = new int[2*conj.getNombreLitterauxTotaux()][2*conj.getNombreLitterauxTotaux()]; //2 fois car les
         //les litteraux sont en double (x et !x)
@@ -70,6 +80,17 @@ public class GraphImplication implements Graph {
         }
         determinerLesArcDuGraph();
     }
+
+    /**
+     * Methode pour determiner les arcs.
+     * Fonctionnement :
+     * A) Parcours les clauses une par une.
+     *  Pour la clause une (l1 v l2)
+     *  1) elle ajoute l'arc !l1 vers l2
+     *  2) elle ajoute l'arc !l2 vers l1
+     *  -- Elle recupere la negation d'un litteral grace a {@link Litteral}.{@code negLitteral()} --
+     * B) Recommencer avec les autres clauses
+     */
     private void determinerLesArcDuGraph(){
         int n = conj.getNombreLitterauxTotaux(); //Nombre de litteral dans la clause
         for (int i = 0; i < clauses.length; i++) {
@@ -88,7 +109,7 @@ public class GraphImplication implements Graph {
                 ligneIndice += n;
             System.out.println(colonneLitt.litteralToString() + ", id : " + colonneLitt.getId() + ", Indice NUMERO 1 : " + colIndice);
             System.out.println(ligneLitt.litteralToString() + ", id : " + ligneLitt.getId() + ", Indice : " + ligneIndice);
-            graphMatrice[ligneIndice][colIndice] += 1; //On ajoute 1 dans la case du graphe pour representer la presence de l'arc
+            graphMatrice[ligneIndice][colIndice] = 1; //On ajoute 1 dans la case du graphe pour representer la presence de l'arc
 
             //Determiner l'implication non(y) => x
 
@@ -100,45 +121,7 @@ public class GraphImplication implements Graph {
                 colIndice += n; //car s'il est negatif, il est dans la seconde partie du tableau
             if(ligneLitt.getNeg())
                 ligneIndice += n;
-            graphMatrice[ligneIndice][colIndice ] += 1; //On ajoute 1 dans la case du graphe pour representer la presence de l'arc
-        }
-    }
-    //recuperer les litteraux des clauses
-    private void setLitteraux(){
-        litteraux = new ArrayList<Litteral>();
-        for (int i = 0; i < clauses.length; i++) {
-            litteraux.add(clauses[i].getLitterauxDeLaClause()[0]); //Recupere le premier litterale de la clause
-            litteraux.add(clauses[i].getLitterauxDeLaClause()[1]); //Recupere le second litterale de la clause
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-    String command = "dot -Tpng input.dot -o output.png";
-    ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/c", command);
-    private void test(){
-        pb.directory(new File("resources/graph"));
-        pb.redirectErrorStream(true);
-        try {
-            Process process = pb.start();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            graphMatrice[ligneIndice][colIndice ] = 1; //On ajoute 1 dans la case du graphe pour representer la presence de l'arc
         }
     }
 }
-
-
-
-
-
-
-
