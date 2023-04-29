@@ -19,7 +19,7 @@ public class DessinerGraph {
     private final int matriceLength;
     private String titreGraph;
     private final String fichierDot;
-    private final String fichierImage;
+    private String fichierImage;
 
     public DessinerGraph(Graph graph, String titreGraph) {
         this.graph = graph;
@@ -28,7 +28,10 @@ public class DessinerGraph {
         matriceLength = graph.getGraphMatrice().length;
         codeDotDuGraph = "digraph {\n" + this.titreGraph +"\n";
         fichierDot = "src/main/resources/dot/codeGraphDOT.DOT";
-        fichierImage = "imageGraph.png";
+        if(titreGraph == "Graphe Implication")
+            fichierImage = "graphImpilication.png";
+        else
+            fichierImage = "graphTranspose.png";
     }
 
     /**
@@ -76,7 +79,7 @@ public class DessinerGraph {
      */
     private void genererCodeDOT(){
         try {
-            File fichier = new File("src/main/resources/dot/codeGraphDOT.DOT");
+            File fichier = new File(fichierDot);
             FileWriter fw = new FileWriter(fichier, false); // false pour ecraser le contenu de la classe
             BufferedWriter bw = new BufferedWriter(fw);
 
@@ -94,7 +97,7 @@ public class DessinerGraph {
      * L'image est contenu dans le dossier **src/main/resources/graph**
      */
     public void genererLImage() {
-        String command = "dot -Tpng " + fichierDot + " -o " + fichierImage;
+        String command = "dot -Tpng ../dot/codeGraphDOT.DOT  -o " + fichierImage;
         ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/c", command);
         pb.directory(new File("src/main/resources/graph"));
         pb.redirectErrorStream(true);
@@ -103,7 +106,7 @@ public class DessinerGraph {
             process.waitFor(); // attendre la fin de la compilation de l'image
 
             // ouvrir l'image avec le programme par défaut
-            File imageFile = new File(fichierImage);
+            File imageFile = new File("src/main/resources/graph/"+fichierImage);
             Desktop.getDesktop().open(imageFile);
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
