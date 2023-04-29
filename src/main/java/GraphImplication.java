@@ -20,6 +20,7 @@ public class GraphImplication implements Graph {
     private int[][] graphMatrice;
     private Clause[] clauses;
     private Conjonctions conj;
+    private String[] litterauxDuTableau;
 
     /**
      * Constructeur de la class
@@ -29,6 +30,17 @@ public class GraphImplication implements Graph {
         this.conj= conj;
         clauses = conj.getClauses();
         initialiserGraph();
+        litterauxDuTableau = new String[2*conj.getNombreLitterauxTotaux()];
+        for (int i = 0; i < litterauxDuTableau.length; i++) {
+            if(i < conj.getNombreLitterauxTotaux())
+                litterauxDuTableau[i] = " " + (char) ('x'+i);
+            else
+                litterauxDuTableau[i] = "!" + (char) ('x'+i-litterauxDuTableau.length/2);
+        }
+    }
+    @Override
+    public String nomCase(int i){
+        return litterauxDuTableau[i];
     }
 
     @Override
@@ -41,24 +53,17 @@ public class GraphImplication implements Graph {
         System.out.println("---- MATRICE GRAPH DES IMPLICATIONS ----");
         //dessiner la premiere partie de la 1ere ligne pour indiquer les litteraux positifs
         System.out.print("___|");
-        for (int i = 0; i < conj.getNombreLitterauxTotaux(); i++) {
-            System.out.print( " " + (char) ('x'+i) + " |");
+        for (int i = 0; i < litterauxDuTableau.length; i++) {
+            System.out.print(litterauxDuTableau[i] + " |");
         }
-        //dessiner la seconde partie de la 1ere ligne pour indiquer les litteraux negatifs
-        for (int i = 0; i < conj.getNombreLitterauxTotaux(); i++) {
-            System.out.print( "!" + (char) ('x'+i) + " |");
-        }
-        System.out.println("");
+        System.out.println();
 
         // parcours du tableau à l'aide de deux boucles for
         for (int i = 0; i < graphMatrice.length; i++) {
             for (int j = 0; j < graphMatrice[i].length; j++) {
-                if (j == 0 && i < conj.getNombreLitterauxTotaux()){
+                if (j == 0){
                     //dessiner la premiere partie de la 1ere colonne pour indiquer les litteraux positifs
-                    System.out.print( " " + (char) ('x'+i) + " |");
-                } else if (j == 0 && i >= conj.getNombreLitterauxTotaux()) {
-                    //dessiner la seconde partie de la 1ere colonne pour indiquer les litteraux negatifs
-                    System.out.print( "!" + (char) ('x'+i-conj.getNombreLitterauxTotaux()) + " |");
+                    System.out.print(litterauxDuTableau[i] + " |");
                 }
                 System.out.print(" " + graphMatrice[i][j] + " |");
             }

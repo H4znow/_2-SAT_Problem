@@ -14,4 +14,11 @@ public interface Graph {
      * permettre a l'utilisateur de la visualiser.
      */
     public void printGraph();
+
+    /**
+     * Permet de retourner le litterale de la i-eme ligne/colonne
+     * La matrice est anti-symetrique. Ainsi la lettre de la ligne i est la meme que celle de la colonne A
+     * @return le nom du litteral represente par la ieme ligne ou colonne
+     */
+    public String nomCase(int i);
 }

@@ -14,7 +14,9 @@ public class Programme {
     Programme(File file){
          rf = new ReadingInFile(file);
          Conjonctions conj = new Conjonctions(rf);
-         GraphImplication graphImplication = new GraphImplication(conj);
+         Graph graphImplication = new GraphImplication(conj);
          graphImplication.printGraph();
+         DessinerGraph dg = new DessinerGraph(graphImplication, "Graphe Implication");
+         dg.genererGraph();
     }
 }
