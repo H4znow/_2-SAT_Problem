@@ -10,8 +10,6 @@ public class GraphImplication implements Graph {
     Une case prend 3 valeurs :
     si graphMatrice[i][j] = 0 : aucun arc
     si graphMatrice[i][j] = 1 : arc de i vers j
-    si graphMatrice[i][j] = 2 : arc de j vers i
-    si graphMatrice[i][j] = 3 : deux arcs
     Les i-eme premiers cases contiennent les litteraux "positifs" et les j-ieme restantes contient leurs inverse
      */
 
@@ -34,10 +32,29 @@ public class GraphImplication implements Graph {
 
     @Override
     public void printGraph() {
+        System.out.println("---- MATRICE GRAPH DES IMPLICATIONS ----");
+        //dessiner la premiere partie de la 1ere ligne pour indiquer les litteraux positifs
+        System.out.print("___|");
+        for (int i = 0; i < conj.getNombreLitterauxTotaux(); i++) {
+            System.out.print( " " + (char) ('x'+i) + " |");
+        }
+        //dessiner la seconde partie de la 1ere ligne pour indiquer les litteraux negatifs
+        for (int i = 0; i < conj.getNombreLitterauxTotaux(); i++) {
+            System.out.print( "!" + (char) ('x'+i) + " |");
+        }
+        System.out.println("");
+
         // parcours du tableau à l'aide de deux boucles for
         for (int i = 0; i < graphMatrice.length; i++) {
             for (int j = 0; j < graphMatrice[i].length; j++) {
-                System.out.print(graphMatrice[i][j] + " ");
+                if (j == 0 && i < conj.getNombreLitterauxTotaux()){
+                    //dessiner la premiere partie de la 1ere colonne pour indiquer les litteraux positifs
+                    System.out.print( " " + (char) ('x'+i) + " |");
+                } else if (j == 0 && i >= conj.getNombreLitterauxTotaux()) {
+                    //dessiner la seconde partie de la 1ere colonne pour indiquer les litteraux negatifs
+                    System.out.print( "!" + (char) ('x'+i-conj.getNombreLitterauxTotaux()) + " |");
+                }
+                System.out.print(" " + graphMatrice[i][j] + " |");
             }
             System.out.println(); // saut de ligne pour passer à la ligne suivante du tableau
         }
@@ -51,36 +68,39 @@ public class GraphImplication implements Graph {
                 graphMatrice[i][j] = 0;
             }
         }
-        remplirLaMatrice();
+        determinerLesArcDuGraph();
     }
-    private void remplirLaMatrice(){
+    private void determinerLesArcDuGraph(){
+        int n = conj.getNombreLitterauxTotaux(); //Nombre de litteral dans la clause
         for (int i = 0; i < clauses.length; i++) {
-            Litteral[] litterauxDeLaClause = clauses[i].getLitterauxDeLaClause(); //On a x v y
+            Litteral[] litterauxDeLaClause = clauses[i].getLitterauxDeLaClause(); //On a x v y par exemple
 
             //Determiner l'implication non(x) => y
 
-            Litteral premLitt = litterauxDeLaClause[0].negLitteral(); //On creer !x [ non(x) ]
-            Litteral secLitt = litterauxDeLaClause[1]; //On garde y
-            int premIndice = premLitt.getId()-1; // Definit l'indice du 1er litteral dans le graph
+            Litteral colonneLitt = litterauxDeLaClause[0].negLitteral(); //On creer !x [ non(x) ]
+            Litteral ligneLitt = litterauxDeLaClause[1]; //On garde y
+            int colIndice = colonneLitt.getId()-1; // Definit l'indice du 1er litteral dans le graph
             //-1 parceque le tableau commence a 0
-            int secIndice = premLitt.getId()-1;
-            if (premLitt.getNeg())
-                premIndice += conj.getNombreClausesTotaux()-1; //car s'il est negatif, il est dans la seconde partie du tableau
-            if(secLitt.getNeg())
-                secIndice += conj.getNombreClausesTotaux()-1;
-            graphMatrice[premIndice][secIndice] += 1; //On ajoute 1 dans la case du graphe pour representer la presence de l'arc
+            int ligneIndice = ligneLitt.getId()-1;
+            if (colonneLitt.getNeg())
+                colIndice += n; //car s'il est negatif, il est dans la seconde partie du tableau
+            if(ligneLitt.getNeg())
+                ligneIndice += n;
+            System.out.println(colonneLitt.litteralToString() + ", id : " + colonneLitt.getId() + ", Indice NUMERO 1 : " + colIndice);
+            System.out.println(ligneLitt.litteralToString() + ", id : " + ligneLitt.getId() + ", Indice : " + ligneIndice);
+            graphMatrice[ligneIndice][colIndice] += 1; //On ajoute 1 dans la case du graphe pour representer la presence de l'arc
 
             //Determiner l'implication non(y) => x
 
-            premLitt = litterauxDeLaClause[1].negLitteral(); //On creer !x [ non(x) ]
-            secLitt = litterauxDeLaClause[0]; //On garde y
-            premIndice = premLitt.getId()-1; // Definit l'indice du 1er litteral dans le graph
-            secIndice = premLitt.getId()-1;
-            if (premLitt.getNeg())
-                premIndice += conj.getNombreClausesTotaux()-1; //car s'il est negatif, il est dans la seconde partie du tableau
-            if(secLitt.getNeg())
-                secIndice += conj.getNombreClausesTotaux()-1;
-            graphMatrice[premIndice][secIndice] += 1; //On ajoute 1 dans la case du graphe pour representer la presence de l'arc
+            colonneLitt = litterauxDeLaClause[1].negLitteral(); //On creer !x [ non(x) ]
+            ligneLitt = litterauxDeLaClause[0]; //On garde y
+            colIndice = colonneLitt.getId()-1; // Definit l'indice du 1er litteral dans le graph
+            ligneIndice = ligneLitt.getId()-1;
+            if (colonneLitt.getNeg())
+                colIndice += n; //car s'il est negatif, il est dans la seconde partie du tableau
+            if(ligneLitt.getNeg())
+                ligneIndice += n;
+            graphMatrice[ligneIndice][colIndice ] += 1; //On ajoute 1 dans la case du graphe pour representer la presence de l'arc
         }
     }
     //recuperer les litteraux des clauses

@@ -37,6 +37,10 @@ public class Litteral {
         return valeur;
     }
 
+    /**
+     * Retourner la negation du litteral. Si on a x, on creer et retourne non(x)
+     * @return litteral inverse de {@code this}
+     */
     public Litteral negLitteral(){
         if (neg)
             return new Litteral(litteral.charAt(1)+"");
@@ -62,7 +66,7 @@ public class Litteral {
             indice = 1;
         //On converti le numero obtenu en int. Puis on l'ajoute a y pour obtenir la i lettre apres y.
         idInt = Character.getNumericValue(litteral.charAt(indice));
-        idLettre= (char) ('w'+(int) litteral.charAt(indice));
+        idLettre= (char) ('w'+ idInt);
     }
     private void setNeg(){
         if(litteral.charAt(0) == '-') {

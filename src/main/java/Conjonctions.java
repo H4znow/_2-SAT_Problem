@@ -2,7 +2,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
- * Classe qui represente une conjonction de clauses. Autrement dit, elle contient toute les clauses du programmes
+ * Classe qui represente une conjonction de clauses. Autrement dit, elle contient et represente toute les clauses du programmes
  */
 public class Conjonctions {
     private LinkedList<Clause> clauses;

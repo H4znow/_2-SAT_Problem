@@ -8,8 +8,7 @@ public class Main {
 
     private static void thereIsAnArgument(String[] args){
         if (args.length == 0) {
-            System.out.println("Aucun argument n'a été passé.");
-            System.exit(1);
+            throw new RuntimeException("Aucun argument n'a été passé.");
         } else {
             System.out.println("Le programme a reçu " + args.length + " argument(s).");
             file = new File(args[0]);
