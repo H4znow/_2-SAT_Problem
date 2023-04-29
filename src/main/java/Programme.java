@@ -16,7 +16,12 @@ public class Programme {
          Conjonctions conj = new Conjonctions(rf);
          Graph graphImplication = new GraphImplication(conj);
          graphImplication.printGraph();
-         DessinerGraph dg = new DessinerGraph(graphImplication, "Graphe Implication");
+         Graph graphTransposee = new GraphTransposee(conj, graphImplication);
+         graphTransposee.printGraph();
+         DessinerGraph dg;
+         dg = new DessinerGraph(graphImplication, "Graphe Implication");
+         dg.genererGraph();
+         dg = new DessinerGraph(graphTransposee, "Graphe Tranposee");
          dg.genererGraph();
     }
 }

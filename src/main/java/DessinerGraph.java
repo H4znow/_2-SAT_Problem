@@ -18,7 +18,7 @@ public class DessinerGraph {
     private final int[][] matriceGraph;
     private final int matriceLength;
     private String titreGraph;
-    private final String fichierDot;
+    private String fichierDot;
     private String fichierImage;
 
     /**
@@ -32,11 +32,15 @@ public class DessinerGraph {
         matriceGraph = graph.getGraphMatrice();
         matriceLength = graph.getGraphMatrice().length;
         codeDotDuGraph = "digraph {\n" + this.titreGraph +"\n";
-        fichierDot = "src/main/resources/dot/codeGraphDOT.DOT";
-        if(titreGraph == "Graphe Implication")
+
+        if(titreGraph == "Graphe Implication"){
             fichierImage = "graphImpilication.png";
-        else
+            fichierDot = "src/main/resources/dot/graphImpilication.DOT";
+        }else{
             fichierImage = "graphTranspose.png";
+            fichierDot = "src/main/resources/dot/graphTranspose.DOT";
+        }
+
     }
 
     /**
@@ -80,7 +84,7 @@ public class DessinerGraph {
     /**
      * Methode pour generer le code DOT dans {@link String}{@code codeDotDuGraph}.
      * Elle va permettre de sauvegarder le code dans le fichier du projet :
-     * @file src/main/resources/dot/codeGraphDOT.DOT
+     * @file src/main/resources/dot/graphTranspose.DOT
      */
     private void genererCodeDOT(){
         try {
@@ -102,7 +106,8 @@ public class DessinerGraph {
      * L'image est contenu dans le dossier **src/main/resources/graph**
      */
     public void genererLImage() {
-        String command = "dot -Tpng ../dot/codeGraphDOT.DOT  -o " + fichierImage;
+        String chemin = fichierDot.substring(fichierDot.indexOf("dot/"));
+        String command = "dot -Tpng ../" + chemin + " -o " + fichierImage;
         ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/c", command);
         pb.directory(new File("src/main/resources/graph"));
         pb.redirectErrorStream(true);

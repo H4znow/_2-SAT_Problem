@@ -1,0 +1,12 @@
+digraph {
+label="Graphe Tranposee";
+
+" z"  -> " x";
+" x"  -> " y";
+"!z"  -> " y";
+"!y"  -> " z";
+" z"  -> "!x";
+"!y"  -> "!x";
+" x"  -> "!z";
+"!x"  -> "!z";
+}
