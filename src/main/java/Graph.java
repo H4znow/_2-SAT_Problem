@@ -18,6 +18,7 @@ public interface Graph {
     /**
      * Permet de retourner le litterale de la i-eme ligne/colonne
      * La matrice est anti-symetrique. Ainsi la lettre de la ligne i est la meme que celle de la colonne A
+     * @param i le numero de la ligne/colonne dont on souhaite retourner le nom (le litteral)
      * @return le nom du litteral represente par la ieme ligne ou colonne
      */
     public String nomCase(int i);

@@ -21,6 +21,11 @@ public class DessinerGraph {
     private final String fichierDot;
     private String fichierImage;
 
+    /**
+     * Constructeur de la classe pour initier les attributs
+     * @param graph le graph qu'on dessinera
+     * @param titreGraph le titre du graphe qui apparaitra dans la repsentation graphique du graph
+     */
     public DessinerGraph(Graph graph, String titreGraph) {
         this.graph = graph;
         this.titreGraph = "label=\"" + titreGraph+ "\";\n";
