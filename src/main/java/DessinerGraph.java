@@ -49,7 +49,6 @@ public class DessinerGraph {
     public void genererGraph(){
         creerCodeGraphe();
         genererCodeDOT();
-        genererLImage();
     }
 
     /**
