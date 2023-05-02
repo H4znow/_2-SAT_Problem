@@ -14,8 +14,8 @@ public class ParcoursEnProfondeur {
         for (int j = 0; j < predecesseur.length; j++) {
             predecesseur[j] = -1;
         }
-        parcouru.add(i); //On ajoute le sommet de depart dans le tableau parcouru
-        predecesseur[i] = -1;
+        //parcouru.add(i); //On ajoute le sommet de depart dans le tableau parcouru
+        //predecesseur[i] = -1;
         parcoursEnProfondeur(i);
     }
 
@@ -27,7 +27,7 @@ public class ParcoursEnProfondeur {
         int n = 2*conj.getNombreLitterauxTotaux(); //max de sommets dans l'algo
         for (int j = -1; j < n; j++) {//On parcours tout les litteraux un par un
             if(j==-1)
-                j = i;
+                j=i; //algo commence par le sommet donne en argument.
             if(!parcouru.contains(j)){//
                 parcouru.add(j);
                 for (int k = 0; k < n; k++) {//Parcours tout les ars sortants de j
