@@ -1,41 +1,42 @@
 import java.io.File;
 
 /**
- * Class programme qui represente le programme. Elle creer les objets
- * necessaire au fonctionnement : rader, conjonctions et les graphs.
+ * La classe Programme représente le programme qui permet de résoudre le problème 2-SAT.
+ * Elle crée les objets nécessaires au fonctionnement du programme : le lecteur, les conjonctions, et les graphes.
  */
 public class Programme {
     private ReadingInFile rf;
 
     /**
-     * Constructeur de la class
-     * @param file le fichier qui contient le 2-SAT probleme
+     * Constructeur de la classe Programme.
+     * @param file le fichier qui contient le problème 2-SAT
      */
     Programme(File file){
-        //Initier le lecteur
-         rf = new ReadingInFile(file);
-         //Initier la conjection (toute les clauses)
-         Conjonctions conj = new Conjonctions(rf);
-         //Creer le graph des implications
-         Graph graphImplication = new GraphImplication(conj);
-         graphImplication.printGraph();
-         //Creer le graph transposee
-         Graph graphTransposee = new GraphTransposee(conj, graphImplication);
-         graphTransposee.printGraph();
+        // Initialisation du lecteur de fichier
+        rf = new ReadingInFile(file);
+        // Initialisation des conjonctions à partir du fichier lu
+        Conjonctions conj = new Conjonctions(rf);
+        // Création du graphe d'implication à partir des conjonctions
+        Graph graphImplication = new GraphImplication(conj);
+        // Affichage du graphe d'implication
+        graphImplication.printGraph();
+        // Création du graphe transposé
+        Graph graphTransposee = new GraphTransposee(conj, graphImplication);
+        // Affichage du graphe transposé
+        graphTransposee.printGraph();
 
-         //Generer le code DOT puis les images des deux graphes
-         DessinerGraph dg;
-         dg = new DessinerGraph(graphImplication, "Graphe Implication");
-         dg.genererGraph();
-         //dg.genererLImage();
-         dg = new DessinerGraph(graphTransposee, "Graphe Tranposee");
-         dg.genererGraph();
-         //dg.genererLImage();
+        // Génération du code DOT et des images des deux graphes
+        DessinerGraph dg;
+        dg = new DessinerGraph(graphImplication, "Graphe Implication");
+        dg.genererGraph();
+        //dg.genererLImage();
+        dg = new DessinerGraph(graphTransposee, "Graphe Tranposee");
+        dg.genererGraph();
+        //dg.genererLImage();
 
-         //Calcul en Profondeur
-        ParcoursEnProfondeur pf = new ParcoursEnProfondeur(graphImplication,conj,0);
-        pf.printParcoursEnProfn();
-
-
+        // Calcul en profondeur
+        ParcoursEnProfondeur pf = new ParcoursEnProfondeurGraphe(graphImplication,conj,0);
+        // Affichage du parcours en profondeur
+        pf.printParcoursEnProfondeur();
     }
 }

@@ -1,5 +1,5 @@
 /**
- * Classe qui represenet le graph transposee Gt de G
+ * Classe qui représente le graphe transpose Gt de G.
  */
 public class GraphTransposee implements Graph{
     private Graph graph;
@@ -7,9 +7,9 @@ public class GraphTransposee implements Graph{
     private String[] litterauxDuTableau;
 
     /**
-     * Constructeur pour initier les attributs
-     * @param conj la {@link Conjonctions} du probleme
-     * @param graph le {@link GraphImplication} dont on va determiner la transposee
+     * Constructeur pour initialiser les attributs.
+     * @param conj La {@link Conjonctions} du problème.
+     * @param graph Le {@link GraphImplication} dont on va déterminer la transposee.
      */
     public GraphTransposee(Conjonctions conj, Graph graph){
         this.graph = graph;
@@ -17,11 +17,12 @@ public class GraphTransposee implements Graph{
         litterauxDuTableau = new String[2*conj.getNombreLitterauxTotaux()];
         for (int i = 0; i < litterauxDuTableau.length; i++) {
             if(i < conj.getNombreLitterauxTotaux())
-                litterauxDuTableau[i] = " " + (char) ('x'+i);
+                litterauxDuTableau[i] = " " + (char) ('a'+i);
             else
-                litterauxDuTableau[i] = "!" + (char) ('x'+i-litterauxDuTableau.length/2);
+                litterauxDuTableau[i] = "!" + (char) ('a'+i-litterauxDuTableau.length/2);
         }
     }
+
     @Override
     public int[][] getGraphMatrice() {
         return graphMatrice;
@@ -30,24 +31,27 @@ public class GraphTransposee implements Graph{
     @Override
     public void printGraph() {
         System.out.println("---- MATRICE GRAPH TRANSPOSEE ----");
-        //dessiner la premiere partie de la 1ere ligne pour indiquer les litteraux positifs
+        // Dessine la première partie de la 1ère ligne pour indiquer les littéraux positifs.
         System.out.print("___|");
         for (int i = 0; i < litterauxDuTableau.length; i++) {
             System.out.print(litterauxDuTableau[i] + " |");
         }
         System.out.println();
 
-        // parcours du tableau à l'aide de deux boucles for
+        // Parcours du tableau à l'aide de deux boucles for.
         for (int i = 0; i < graphMatrice.length; i++) {
             for (int j = 0; j < graphMatrice[i].length; j++) {
                 if (j == 0){
-                    //dessiner la premiere partie de la 1ere colonne pour indiquer les litteraux positifs
+                    // Dessine la première partie de la 1ère colonne pour indiquer les littéraux positifs.
                     System.out.print(litterauxDuTableau[i] + " |");
                 }
                 System.out.print(" " + graphMatrice[i][j] + " |");
             }
-            System.out.println(); // saut de ligne pour passer à la ligne suivante du tableau
+            System.out.println(); // Saut de ligne pour passer à la ligne suivante du tableau.
         }
+        System.out.println();
+        System.out.println();
+        // Pour la mise en page.
     }
 
     @Override
@@ -56,21 +60,21 @@ public class GraphTransposee implements Graph{
     }
 
     /**
-     * Creer la matrice transposee (pour inverser les arcs) a partir de la matrice de {@link GraphImplication}
-     * @param matrice la matrice {@link GraphImplication}
-     * @return le tableau bidimensionnel representant le graph transposee
+     * Créer la matrice transposee (pour inverser les arcs) à partir de la matrice de {@link GraphImplication}.
+     * @param matrice La matrice {@link GraphImplication}.
+     * @return Le tableau bidimensionnel représentant le graphe transpose.
      */
     private int[][] creerMatriceTransposee(int[][] matrice){
         int[][] matriceTransposee = new int[matrice.length][matrice.length];
 
-        //Initialise le tableau a 0
+        // Initialise le tableau à 0.
         for (int i = 0; i < matrice.length; i++) {
             for (int j = 0; j < matrice.length; j++) {
                 matriceTransposee[i][j] = 0;
             }
         }
 
-        //Determine les arcs du graph. Si (i,j) = 1 alors dans le nouveau graph, on a (j,i) = 1
+        // Détermine les arcs du graphe. Si (i,j) = 1 alors dans le nouveau graphe, on a (j,i) = 1.
         for (int i = 0; i < matrice.length; i++) {
             for (int j = 0; j < matrice.length; j++) {
                 if (matrice[i][j] == 1)

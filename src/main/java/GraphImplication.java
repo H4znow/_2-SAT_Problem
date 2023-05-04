@@ -10,11 +10,11 @@ import java.util.List;
 public class GraphImplication implements Graph {
 
     /*
-    Talbeau de taille (2*le nombre de litteraux)x(2*le nombre de litteraux).
+    Tableau de taille (2*le nombre de littéraux)x(2*le nombre de littéraux).
     Une case prend 3 valeurs :
     si graphMatrice[i][j] = 0 : aucun arc
     si graphMatrice[i][j] = 1 : arc de i vers j
-    Les i-eme premiers cases contiennent les litteraux "positifs" et les j-ieme restantes contient leurs inverse
+    Les i-ème premières cases contiennent les littéraux "positifs" et les j-ième restantes contiennent leurs inverses
      */
 
     private int[][] graphMatrice;
@@ -23,8 +23,8 @@ public class GraphImplication implements Graph {
     private String[] litterauxDuTableau;
 
     /**
-     * Constructeur de la class
-     * @param conj la conjonction (ensemble des clauses) qu'il utilise pour deduire lles implications entre litteraux
+     * Constructeur de la classe
+     * @param conj la conjonction (ensemble des clauses) qu'il utilise pour déduire les implications entre littéraux
      */
     public GraphImplication(Conjonctions conj){
         this.conj= conj;
@@ -33,11 +33,12 @@ public class GraphImplication implements Graph {
         litterauxDuTableau = new String[2*conj.getNombreLitterauxTotaux()];
         for (int i = 0; i < litterauxDuTableau.length; i++) {
             if(i < conj.getNombreLitterauxTotaux())
-                litterauxDuTableau[i] = " " + (char) ('x'+i);
+                litterauxDuTableau[i] = " " + (char) ('a'+i);
             else
-                litterauxDuTableau[i] = "!" + (char) ('x'+i-litterauxDuTableau.length/2);
+                litterauxDuTableau[i] = "!" + (char) ('a'+i-litterauxDuTableau.length/2);
         }
     }
+
     @Override
     public String nomCase(int i){
         return litterauxDuTableau[i];
@@ -51,7 +52,9 @@ public class GraphImplication implements Graph {
     @Override
     public void printGraph() {
         System.out.println("---- MATRICE GRAPH DES IMPLICATIONS ----");
-        //dessiner la premiere partie de la 1ere ligne pour indiquer les litteraux positifs
+        System.out.println("---- remarque : si (x,y) = 1 signifie qu'il y a un arc de x vers y----");
+        System.out.println("---- remarque : la direction de l'arc part du littéral sur la colonne vers celui de la ligne----");
+        //dessiner la première partie de la 1ère ligne pour indiquer les littéraux positifs
         System.out.print("___|");
         for (int i = 0; i < litterauxDuTableau.length; i++) {
             System.out.print(litterauxDuTableau[i] + " |");
@@ -62,22 +65,25 @@ public class GraphImplication implements Graph {
         for (int i = 0; i < graphMatrice.length; i++) {
             for (int j = 0; j < graphMatrice[i].length; j++) {
                 if (j == 0){
-                    //dessiner la premiere partie de la 1ere colonne pour indiquer les litteraux positifs
+                    //dessiner la première partie de la 1ère colonne pour indiquer les littéraux positifs
                     System.out.print(litterauxDuTableau[i] + " |");
                 }
                 System.out.print(" " + graphMatrice[i][j] + " |");
             }
             System.out.println(); // saut de ligne pour passer à la ligne suivante du tableau
         }
+        System.out.println();
+        System.out.println();
+        //Pour la mise en page
     }
 
     /**
-     * Methode pour initier dans un premier temps le tableau a 0. Elle determine ensuite les arc en remplissant
+     * Méthode pour initialiser dans un premier temps le tableau à 0. Elle détermine ensuite les arcs en remplissant
      * le tableau via {@code this.determinerLesArcDuGraph}
      */
     private void initialiserGraph(){
         graphMatrice = new int[2*conj.getNombreLitterauxTotaux()][2*conj.getNombreLitterauxTotaux()]; //2 fois car les
-        //les litteraux sont en double (x et !x)
+        //les littéraux sont en double (x et !x)
         for (int i = 0; i < graphMatrice.length; i++) {
             for (int j = 0; j < graphMatrice.length; j++) {
                 graphMatrice[i][j] = 0;
@@ -87,12 +93,12 @@ public class GraphImplication implements Graph {
     }
 
     /**
-     * Methode pour determiner les arcs.
+     * Méthode pour déterminer les arcs.
      * Fonctionnement :
      * A) Parcours les clauses une par une.
      *  Pour la clause une (l1 v l2)
      *  1) elle ajoute l'arc !l1 vers l2
-     *  2) elle ajoute l'arc !l2 vers l1
+     *  2) elle ajoute
      *  -- Elle recupere la negation d'un litteral grace a {@link Litteral}.{@code negLitteral()} --
      * B) Recommencer avec les autres clauses
      */
@@ -112,8 +118,6 @@ public class GraphImplication implements Graph {
                 colIndice += n; //car s'il est negatif, il est dans la seconde partie du tableau
             if(ligneLitt.getNeg())
                 ligneIndice += n;
-            System.out.println(colonneLitt.litteralToString() + ", id : " + colonneLitt.getId() + ", Indice NUMERO 1 : " + colIndice);
-            System.out.println(ligneLitt.litteralToString() + ", id : " + ligneLitt.getId() + ", Indice : " + ligneIndice);
             graphMatrice[ligneIndice][colIndice] = 1; //On ajoute 1 dans la case du graphe pour representer la presence de l'arc
 
             //Determiner l'implication non(y) => x

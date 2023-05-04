@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 
 /**
- * Classe qui represente une conjonction de clauses. Autrement dit, elle contient et represente toute les clauses du programmes
+ * Classe qui représente une conjonction de clauses. Autrement dit, elle contient et représente toutes les clauses du programme.
  */
 public class Conjonctions {
     // Liste chaînée contenant toutes les clauses du programme.
@@ -80,9 +80,11 @@ public class Conjonctions {
      * Initialise les clauses à partir du fichier d'entrée.
      */
     private void initialiserLesClauses(){
-        clauses = new LinkedList<Clause>();
-        for (int i = 3; i <= maxLignes; i++) {
+        clauses = new LinkedList<>();
+        for (int i = 3; i <= maxLignes; i++) {//On commence à la ligne 3 (première clause)
+            //On lit une ligne du programme.
             String arg = readingInFile.readingInFile(i);
+            //On crée l'objet clause dans la ligne et on l'ajoute dans la conjonction.
             clauses.add(new Clause(arg));
         }
     }

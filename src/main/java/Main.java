@@ -1,18 +1,18 @@
 import java.io.File;
 
 /**
- * Class Main qui contient la methode main, point d'acces du programme.
- * Elle a deux missions : Determiner s'il y a un argument
+ * Classe Main qui contient la méthode main, point d'accès du programme.
+ * Elle a deux missions : déterminer s'il y a un argument.
  */
 public class Main {
 
-    // L'objet file qui represente le fichier en argument du programme
+    // L'objet file qui représente le fichier en argument du programme.
     private static File file;
 
     /**
-     * Verifie que le programme est bien lance avec un argument
-     * @param args taleau string qui represente les arguments du programme
-     * @throws RuntimeException s'il y a un probleme avec l'argument
+     * Vérifie que le programme est bien lancé avec un argument.
+     * @param args Le tableau de string qui représente les arguments du programme.
+     * @throws RuntimeException S'il y a un problème avec l'argument.
      */
     private static void thereIsAnArgument(String[] args){
         if (args.length == 0) {
@@ -22,15 +22,15 @@ public class Main {
             try {
                 file = new File(args[0]);
             } catch (Throwable e) {
-                throw new RuntimeException("Erreur dans l'adresse du fichier donnee", e);
+                throw new RuntimeException("Erreur dans l'adresse du fichier donnée", e);
             }
             System.out.println("L'adresse du fichier est "+ file.getAbsolutePath());
         }
     }
 
     /**
-     * Methode main qui est le point d'acces au programme
-     * @param args taleau string qui represente les arguments du programme
+     * Méthode main qui est le point d'accès au programme.
+     * @param args Le tableau de string qui représente les arguments du programme.
      */
     public static void main(String[] args) {
         thereIsAnArgument(args);

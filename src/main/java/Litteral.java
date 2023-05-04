@@ -74,7 +74,7 @@ public class Litteral {
             indice = 1;
         // On convertit le numéro obtenu en int. Puis on l'ajoute à 'w' pour obtenir la ième lettre après 'w'.
         idInt = Character.getNumericValue(litteral.charAt(indice));
-        idLettre= (char) ('w'+ idInt);
+        idLettre= (char) ('a'-1+ idInt);
     }
 
     /**
