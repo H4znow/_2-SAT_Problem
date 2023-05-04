@@ -1,9 +1,13 @@
 import java.util.ArrayList;
 
+/**
+ * Une classe pour effectuer le parcours en profondeur d'un graphe.
+ */
 public class ParcoursEnProfondeurGraphe implements ParcoursEnProfondeur {
 
+    // Les conjonctions à utiliser
     private Conjonctions conj;
-    // Matrice
+    // La matrice représentant le graphe
     private final int[][] matriceGraph;
     // Tableau qui permet de stocker les sommets déjà parcourus durant l'algorithme
     private ArrayList<Integer> parcouru;
@@ -12,6 +16,12 @@ public class ParcoursEnProfondeurGraphe implements ParcoursEnProfondeur {
     // Tableau qui permet de connaître les chemins parcourus à la fin de l'algo
     int[] predecesseur;
 
+    /**
+     * Constructeur de la classe.
+     * @param graph le graphe à parcourir
+     * @param conj les conjonctions à utiliser
+     * @param i le sommet initial à partir duquel on démarre le parcours
+     */
     public ParcoursEnProfondeurGraphe(Graph graph, Conjonctions conj, int i) {
         this.conj = conj;
         matriceGraph = graph.getGraphMatrice();
@@ -24,6 +34,10 @@ public class ParcoursEnProfondeurGraphe implements ParcoursEnProfondeur {
         parcoursEnProfondeur(i);
     }
 
+    /**
+     * Implémentation de la méthode parcoursEnProfondeur de l'interface ParcoursEnProfondeur.
+     * @param i le sommet initial à partir duquel on démarre le parcours
+     */
     @Override
     public void parcoursEnProfondeur(int i) {
         int n = 2 * conj.getNombreLitterauxTotaux(); // max de sommets dans l'algo
@@ -53,6 +67,11 @@ public class ParcoursEnProfondeurGraphe implements ParcoursEnProfondeur {
         }
     }
 
+    /**
+     * Implémentation de la méthode explorer de l'interface ParcoursEnProfondeur.
+     * @param i le sommet actuel
+     * @param j le sommet suivant à explorer
+     */
     @Override
     public void explorer(int i, int j) {
         int v = j;
@@ -69,6 +88,9 @@ public class ParcoursEnProfondeurGraphe implements ParcoursEnProfondeur {
         }
     }
 
+    /**
+     * Méthode pour afficher le tableau de parcours enprofondeur.
+     */
     @Override
     public void printParcoursEnProfondeur() {
         System.out.println("---- TABLEAU PARCOURS EN PROFONDEUR ----");
