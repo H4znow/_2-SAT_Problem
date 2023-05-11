@@ -29,8 +29,10 @@ public class ComposanteConnexe {
      */
     public boolean contient_Litteral_Et_Sa_Negation() {
         for (int i = 0; i < litteraux.size(); i++) {
+            Litteral negationLitteral = litteraux.get(i).negLitteral(); //On creer la negation du litteral i
             for (int j = 0; j < litteraux.size(); j++) {
-                if (litteraux.get(i).negLitteral() == litteraux.get(j)) { // Si neg(Littéral[i]) == Littéral[j]
+                if ((negationLitteral.getId() == litteraux.get(j).getId()) && (negationLitteral.getNeg() == litteraux.get(j).getNeg())) {
+                    //Si les deux litteraux ont le meme ID et les deux ont le meme "signe"
                     return true; // Alors la clause contient un littéral et son opposé.
                 }
             }

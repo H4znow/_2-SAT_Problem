@@ -22,6 +22,12 @@ public class ComposantesFortementConnexes {
     // Tableau qui permet de connaître les chemins parcourus à la fin de l'algorithme.
     int[] predecesseur;
 
+    /**
+     * Constructeur de la classe
+     * @param graph le graph des implications qu'on étudie
+     * @param graphT la transposée du graph
+     * @param conj l'ensemble des clauses
+     */
     public ComposantesFortementConnexes(Graph graph, Graph graphT, Conjonctions conj){
         this.graph = graph;
         this.conj = conj;

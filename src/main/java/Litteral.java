@@ -31,7 +31,7 @@ public class Litteral {
      */
     public Litteral negLitteral(){
         if (neg)
-            return new Litteral(litteral.charAt(1)+"");
+            return new Litteral(litteral.substring(1));
         return new Litteral("-"+litteral);
     }
 
