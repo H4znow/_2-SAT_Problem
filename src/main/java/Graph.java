@@ -9,12 +9,6 @@ public interface Graph {
     public int[][] getGraphMatrice();
 
     /**
-     * Méthode pour afficher la matrice de graph dans la console afin de permettre
-     * à l'utilisateur de la visualiser.
-     */
-    public void printGraph();
-
-    /**
      * Permet de retourner le littéral de la i-ème ligne/colonne.
      * La matrice est anti-symétrique. Ainsi, la lettre de la ligne i est la même
      * que celle de la colonne i.

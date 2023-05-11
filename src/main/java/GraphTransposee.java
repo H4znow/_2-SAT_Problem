@@ -29,32 +29,6 @@ public class GraphTransposee implements Graph{
     }
 
     @Override
-    public void printGraph() {
-        System.out.println("---- MATRICE GRAPH TRANSPOSEE ----");
-        // Dessine la première partie de la 1ère ligne pour indiquer les littéraux positifs.
-        System.out.print("___|");
-        for (int i = 0; i < litterauxDuTableau.length; i++) {
-            System.out.print(litterauxDuTableau[i] + " |");
-        }
-        System.out.println();
-
-        // Parcours du tableau à l'aide de deux boucles for.
-        for (int i = 0; i < graphMatrice.length; i++) {
-            for (int j = 0; j < graphMatrice[i].length; j++) {
-                if (j == 0){
-                    // Dessine la première partie de la 1ère colonne pour indiquer les littéraux positifs.
-                    System.out.print(litterauxDuTableau[i] + " |");
-                }
-                System.out.print(" " + graphMatrice[i][j] + " |");
-            }
-            System.out.println(); // Saut de ligne pour passer à la ligne suivante du tableau.
-        }
-        System.out.println();
-        System.out.println();
-        // Pour la mise en page.
-    }
-
-    @Override
     public String nomCase(int i) {
         return litterauxDuTableau[i];
     }

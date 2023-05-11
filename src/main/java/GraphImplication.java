@@ -49,34 +49,6 @@ public class GraphImplication implements Graph {
         return graphMatrice;
     }
 
-    @Override
-    public void printGraph() {
-        System.out.println("---- MATRICE GRAPH DES IMPLICATIONS ----");
-        System.out.println("---- remarque : si (x,y) = 1 signifie qu'il y a un arc de x vers y----");
-        System.out.println("---- remarque : la direction de l'arc part du littéral sur la colonne vers celui de la ligne----");
-        //dessiner la première partie de la 1ère ligne pour indiquer les littéraux positifs
-        System.out.print("___|");
-        for (int i = 0; i < litterauxDuTableau.length; i++) {
-            System.out.print(litterauxDuTableau[i] + " |");
-        }
-        System.out.println();
-
-        // parcours du tableau à l'aide de deux boucles for
-        for (int i = 0; i < graphMatrice.length; i++) {
-            for (int j = 0; j < graphMatrice[i].length; j++) {
-                if (j == 0){
-                    //dessiner la première partie de la 1ère colonne pour indiquer les littéraux positifs
-                    System.out.print(litterauxDuTableau[i] + " |");
-                }
-                System.out.print(" " + graphMatrice[i][j] + " |");
-            }
-            System.out.println(); // saut de ligne pour passer à la ligne suivante du tableau
-        }
-        System.out.println();
-        System.out.println();
-        //Pour la mise en page
-    }
-
     /**
      * Méthode pour initialiser dans un premier temps le tableau à 0. Elle détermine ensuite les arcs en remplissant
      * le tableau via {@code this.determinerLesArcDuGraph}
