@@ -109,7 +109,7 @@ public class GraphImplication implements Graph {
 
             //Determiner l'implication non(x) => y
 
-            Litteral colonneLitt = litterauxDeLaClause[0].negLitteral(); //On creer !x [ non(x) ]
+            Litteral colonneLitt = litterauxDeLaClause[0].negLitteral(); //On creer l'inverse du litteral x [ non(x) ]
             Litteral ligneLitt = litterauxDeLaClause[1]; //On garde y
             int colIndice = colonneLitt.getId()-1; // Definit l'indice du 1er litteral dans le graph
             //-1 parceque le tableau commence a 0
@@ -122,7 +122,7 @@ public class GraphImplication implements Graph {
 
             //Determiner l'implication non(y) => x
 
-            colonneLitt = litterauxDeLaClause[1].negLitteral(); //On creer !x [ non(x) ]
+            colonneLitt = litterauxDeLaClause[1].negLitteral(); //On creer l'inverse du litteral x [ non(x) ]
             ligneLitt = litterauxDeLaClause[0]; //On garde y
             colIndice = colonneLitt.getId()-1; // Definit l'indice du 1er litteral dans le graph
             ligneIndice = ligneLitt.getId()-1;

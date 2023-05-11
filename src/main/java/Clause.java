@@ -19,15 +19,7 @@ public class Clause {
      * @return String qui correspond à la clause. Ex : "!x v y v !z"
      */
     public String clauseToString(){
-        String clauseInString ="";
-        int i;
-        for (i = 0; i < litterauxDeLaClause.length-1; i++) {
-            // Ajoute le littéral à la chaîne de caractères de la clause en ajoutant "v " après chaque littéral (sauf le dernier).
-            clauseInString += litterauxDeLaClause[i].litteralToString()+" v ";
-        }
-        // Ajoute le dernier littéral à la chaîne de caractères de la clause sans "v " à la fin.
-        clauseInString += litterauxDeLaClause[i];
-        return clauseInString;
+        return litterauxDeLaClause[0].litteralToString() + " v " + litterauxDeLaClause[1].litteralToString();
     }
 
     /**

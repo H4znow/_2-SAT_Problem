@@ -34,9 +34,12 @@ public class Programme {
         dg.genererGraph();
         //dg.genererLImage();
 
-        // Calcul en profondeur
-        ParcoursEnProfondeur pf = new ParcoursEnProfondeurGraphe(graphImplication,conj,0);
-        // Affichage du parcours en profondeur
-        pf.printParcoursEnProfondeur();
+
+        //Resolution du probleme 2-SAT
+        SAT_Solution ss = new SAT_Solution(graphImplication, graphTransposee, conj);
+        if (ss.estSatisfiable())
+            System.out.println("------------la formule est SATISFIABLE-----------------");
+        else
+            System.out.println("------------la formule est INSATISFIABLE-----------------");
     }
 }

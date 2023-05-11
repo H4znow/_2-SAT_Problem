@@ -1,17 +1,17 @@
 import java.util.ArrayList;
 
 /**
- * Une classe pour effectuer le parcours en profondeur d'un graphe.
+ * Une classe pour determiner l'ordre de sortie grace a l'algorithme du parcours en profondeur.
  */
-public class ParcoursEnProfondeurGraphe implements ParcoursEnProfondeur {
+public class OrdreDeSortieDuGraphImplication {
 
     // Les conjonctions à utiliser
     private Conjonctions conj;
     // La matrice représentant le graphe
     private final int[][] matriceGraph;
-    // Tableau qui permet de stocker les sommets déjà parcourus durant l'algorithme
+    // Liste qui permet de stocker les sommets déjà parcourus durant l'algorithme
     private ArrayList<Integer> parcouru;
-    // Tableau qui permet de déterminer l'ordre de sortie du programme
+    // Liste qui permet de déterminer l'ordre de sortie du programme. Fonctionnera comme une pile
     private ArrayList<Integer> ordreDeSortie;
     // Tableau qui permet de connaître les chemins parcourus à la fin de l'algo
     int[] predecesseur;
@@ -22,7 +22,7 @@ public class ParcoursEnProfondeurGraphe implements ParcoursEnProfondeur {
      * @param conj les conjonctions à utiliser
      * @param i le sommet initial à partir duquel on démarre le parcours
      */
-    public ParcoursEnProfondeurGraphe(Graph graph, Conjonctions conj, int i) {
+    public OrdreDeSortieDuGraphImplication(Graph graph, Conjonctions conj, int i) {
         this.conj = conj;
         matriceGraph = graph.getGraphMatrice();
         parcouru = new ArrayList<>();
@@ -31,15 +31,14 @@ public class ParcoursEnProfondeurGraphe implements ParcoursEnProfondeur {
             predecesseur[j] = -1;
         }
         ordreDeSortie = new ArrayList<>();
-        parcoursEnProfondeur(i);
     }
 
     /**
-     * Implémentation de la méthode parcoursEnProfondeur de l'interface ParcoursEnProfondeur.
-     * @param i le sommet initial à partir duquel on démarre le parcours
+     * Algorithme du parcours en profondeur itérée récursive retournant l'ordre de sortie des sommets.
+     * @param i Le sommet de départ du parcours.
+     * @return une {@link ArrayList} d'entier representant l'ordre de sortie des sommets
      */
-    @Override
-    public void parcoursEnProfondeur(int i) {
+    public ArrayList<Integer> determinerOrdreSortieDuGraph(int i) {
         int n = 2 * conj.getNombreLitterauxTotaux(); // max de sommets dans l'algo
 
         // Parcours depuis le sommet i choisi
@@ -65,15 +64,17 @@ public class ParcoursEnProfondeurGraphe implements ParcoursEnProfondeur {
                 ordreDeSortie.add(j);
             }
         }
+        return ordreDeSortie;
     }
 
     /**
-     * Implémentation de la méthode explorer de l'interface ParcoursEnProfondeur.
-     * @param i le sommet actuel
-     * @param j le sommet suivant à explorer
+     * Explore l'arc (i,j) et détermine s'il a été parcouru ou pas. S'il ne l'a pas été, il explore ensuite les
+     * arcs sortants de j, etc.
+     * Fonction utilisée dans le parcours en profondeur.
+     * @param i Le sommet de départ.
+     * @param j Le sommet de destination.
      */
-    @Override
-    public void explorer(int i, int j) {
+    private void explorer(int i, int j) {
         int v = j;
         if (!parcouru.contains(v)) {
             parcouru.add(v);
@@ -87,11 +88,9 @@ public class ParcoursEnProfondeurGraphe implements ParcoursEnProfondeur {
             ordreDeSortie.add(v);
         }
     }
-
     /**
-     * Méthode pour afficher le tableau de parcours enprofondeur.
+     * Méthode pour afficher le tableau de parcours en profondeur.
      */
-    @Override
     public void printParcoursEnProfondeur() {
         System.out.println("---- TABLEAU PARCOURS EN PROFONDEUR ----");
 

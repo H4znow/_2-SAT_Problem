@@ -26,18 +26,6 @@ public class Litteral {
     }
 
     /**
-     * Pour déterminer la valeur retournée par le litteral lorsqu'il est évalué avec VRAI OU FAUX.
-     * @param valeur la valeur que la méthode évalue (VRAI ou FAUX)
-     * @return la {@code valeur} inverse si le litteral est précédé de {@code this.neg}. Autrement, elle retourne simplement
-     * {@code valeur}.
-     */
-    public boolean evaluerLitteral(boolean valeur){
-        if (neg)
-            return !valeur;
-        return valeur;
-    }
-
-    /**
      * Retourne la négation du litteral. Si on a x, on crée et retourne non(x)
      * @return litteral inverse de {@code this}
      */
@@ -73,7 +61,10 @@ public class Litteral {
         if(neg)
             indice = 1;
         // On convertit le numéro obtenu en int. Puis on l'ajoute à 'w' pour obtenir la ième lettre après 'w'.
-        idInt = Character.getNumericValue(litteral.charAt(indice));
+        if(indice==1)
+            idInt = Integer.parseInt(litteral.substring(1)); // extrait la sous-chaîne a partir de l'indice 1
+        else
+            idInt = Integer.parseInt(litteral);
         idLettre= (char) ('a'-1+ idInt);
     }
 
