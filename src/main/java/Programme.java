@@ -1,8 +1,8 @@
 import java.io.File;
 
 /**
- * La classe Programme représente le programme qui permet de résoudre le problème 2-SAT.
- * Elle crée les objets nécessaires au fonctionnement du programme : le lecteur, les conjonctions, et les graphes.
+ * La classe Programme represente le programme qui permet de resoudre le probleme 2-SAT.
+ * Elle crée les objets necessaires au fonctionnement du programme : le lecteur, les conjonctions, et les graphes.
  */
 public class Programme {
     private ReadingInFile rf;

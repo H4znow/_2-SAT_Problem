@@ -1,5 +1,5 @@
 /**
- * Interface qui permet d'implémenter les différents graphes du projet.
+ * Interface qui permet d'implementer les differents graphes du projet.
  */
 public interface Graph {
     /**

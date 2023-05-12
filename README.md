@@ -15,7 +15,7 @@ Le code a été développé en Java 17.0.5 et a été géré avec Gradle 7.6. Il
 
 ## Exécuter le code
 Pour exécuter le code, suivez les étapes suivantes :
-1. Ouvrez une invite de commande (ou un terminal) et naviguez jusqu'au répertoire racine du projet (répertoire contenant le fichier build.gradle ou build).
+1. Ouvrez une invite de commande (ou un terminal) et naviguez jusqu'au répertoire racine du projet (répertoire contenant le <code>README.md</code> entre autres...).
 2. Exécutez la commande `gradlew build` pour compiler le projet.
 3. Exécutez la commande `gradlew run` pour exécuter le projet.
 

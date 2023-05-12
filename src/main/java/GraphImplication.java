@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Cette classe représente une implémentation de l'interface Graph qui permet de représenter
- * les implications entre les littéraux d'une conjonction.
+ * Cette classe represente une implementation de l'interface Graph qui permet de representer
+ * les implications entre les litteraux d'une conjonction.
  */
 public class GraphImplication implements Graph {
 

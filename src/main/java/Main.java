@@ -4,8 +4,8 @@ import java.nio.file.Files;
 import java.util.List;
 
 /**
- * Classe Main qui contient la méthode main, point d'accès du programme.
- * Elle a deux missions : déterminer s'il y a un argument.
+ * Classe Main qui contient la methode main, point d'acces du programme.
+ * Elle a deux missions : determiner s'il y a un argument.
  */
 public class Main {
 
