@@ -1,7 +1,7 @@
 import java.io.*;
 
 /**
- * Une classe pour lire dans le fichier donné en argument au programme.
+ * Une classe pour lire dans le fichier donne en argument au programme.
  */
 public class ReadingInFile {
 
@@ -14,7 +14,7 @@ public class ReadingInFile {
 
     /**
      * Constructeur de la classe
-     * @param file le fichier à lire
+     * @param file le fichier a lire
      */
     public ReadingInFile(File file){
         this.file = file;
@@ -23,7 +23,7 @@ public class ReadingInFile {
     }
 
     /**
-     * Accéder au nombre maximum de lignes dans le fichier
+     * Acceder au nombre maximum de lignes dans le fichier
      * @return le nombre de lignes maximum dans le fichier
      */
     public int getNombreLignes(){
@@ -31,9 +31,9 @@ public class ReadingInFile {
     }
 
     /*
-     * Cette méthode permet d'initialiser le lecteur de fichier.
+     * Cette methode permet d'initialiser le lecteur de fichier.
      * Elle est utile pour initialiser < BufferedReader br >.
-     * Elle est également utile pour re-"pointer" sur le début du fichier (première ligne).
+     * Elle est egalement utile pour re-"pointer" sur le debut du fichier (premiere ligne).
      */
     private void initiateReader(){
         if(br!=null) {
@@ -51,8 +51,8 @@ public class ReadingInFile {
     }
 
     /*
-     * Méthode pour déterminer le nombre de lignes dans le fichier.
-     * Elle est utilisée dans les autres documents.
+     * Methode pour determiner le nombre de lignes dans le fichier.
+     * Elle est utilisee dans les autres documents.
      */
     private void setNombreLigne(){
         nombreLignes = 0;
@@ -67,16 +67,16 @@ public class ReadingInFile {
     }
 
     /**
-     * Une méthode pour lire la n-ème ligne. Elle retourne une chaîne de caractères qui contient la ligne.
-     * @param n le numéro de la ligne à lire (doit être compris entre 1 et le nombre total de lignes).
-     * @return la ligne n lue dans le fichier sous forme de chaîne de caractères.
-     * @throws IllegalArgumentException si n est inférieur ou égal à zéro ou supérieur au nombre total de lignes du fichier.
-     * @throws RuntimeException si une erreur d'entrée/sortie se produit lors de la lecture du fichier.
+     * Une methode pour lire la n-eme ligne. Elle retourne une chaine de caracteres qui contient la ligne.
+     * @param n le numero de la ligne a lire (doit etre compris entre 1 et le nombre total de lignes).
+     * @return la ligne n lue dans le fichier sous forme de chaine de caracteres.
+     * @throws IllegalArgumentException si n est inferieur ou egal a zero ou superieur au nombre total de lignes du fichier.
+     * @throws RuntimeException si une erreur d'entree/sortie se produit lors de la lecture du fichier.
      */
     public String readingInFile(int n){
-        initiateReader(); // On ré-initialise le lecteur pour être sûr qu'il lit depuis le début du fichier
+        initiateReader(); // On re-initialise le lecteur pour etre sur qu'il lit depuis le debut du fichier
         if(n<=0 || n > nombreLignes)
-            throw new IllegalArgumentException("L'argument n : " + n + " doit être compris entre [1,"+nombreLignes+"].");
+            throw new IllegalArgumentException("L'argument n : " + n + " doit etre compris entre [1,"+nombreLignes+"].");
         String line = "";
         for (int i = 0; i < n; i++) {
             try {

@@ -11,7 +11,7 @@ public class Programme {
      * Constructeur de la classe Programme.
      * @param file le fichier qui contient le problème 2-SAT
      */
-    Programme(File file){
+    public Programme(File file){
         // Initialisation du lecteur de fichier
         rf = new ReadingInFile(file);
         // Initialisation des conjonctions à partir du fichier lu

@@ -15,6 +15,11 @@ dependencies {
     testImplementation('org.assertj:assertj-core:3.23.1')
 }
 
+task run(type: JavaExec) {
+    main = 'Main'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
 test {
     useJUnitPlatform()
 }

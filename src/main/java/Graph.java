@@ -3,17 +3,17 @@
  */
 public interface Graph {
     /**
-     * Méthode pour obtenir la matrice de graph qui représente les arcs du graph.
-     * @return un tableau bidimensionnel d'entiers qui représente la matrice.
+     * Methode pour obtenir la matrice de graph qui represente les arcs du graph.
+     * @return un tableau bidimensionnel d'entiers qui represente la matrice.
      */
     public int[][] getGraphMatrice();
 
     /**
-     * Permet de retourner le littéral de la i-ème ligne/colonne.
-     * La matrice est anti-symétrique. Ainsi, la lettre de la ligne i est la même
+     * Permet de retourner le litteral de la i-eme ligne/colonne.
+     * La matrice est anti-symetrique. Ainsi, la lettre de la ligne i est la meme
      * que celle de la colonne i.
-     * @param i le numéro de la ligne/colonne dont on souhaite retourner le nom (le littéral).
-     * @return le nom du littéral représenté par la ième ligne ou colonne.
+     * @param i le numero de la ligne/colonne dont on souhaite retourner le nom (le litteral).
+     * @return le nom du litteral represente par la ieme ligne ou colonne.
      */
     public String nomCase(int i);
 }

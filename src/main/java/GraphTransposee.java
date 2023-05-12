@@ -1,5 +1,5 @@
 /**
- * Classe qui représente le graphe transpose Gt de G.
+ * Classe qui represente le graphe transpose Gt de G.
  */
 public class GraphTransposee implements Graph{
     private Graph graph;
@@ -8,8 +8,8 @@ public class GraphTransposee implements Graph{
 
     /**
      * Constructeur pour initialiser les attributs.
-     * @param conj La {@link Conjonctions} du problème.
-     * @param graph Le {@link GraphImplication} dont on va déterminer la transposee.
+     * @param conj La {@link Conjonctions} du probleme.
+     * @param graph Le {@link GraphImplication} dont on va determiner la transposee.
      */
     public GraphTransposee(Conjonctions conj, Graph graph){
         this.graph = graph;
@@ -34,21 +34,21 @@ public class GraphTransposee implements Graph{
     }
 
     /**
-     * Créer la matrice transposee (pour inverser les arcs) à partir de la matrice de {@link GraphImplication}.
+     * Creer la matrice transposee (pour inverser les arcs) a partir de la matrice de {@link GraphImplication}.
      * @param matrice La matrice {@link GraphImplication}.
-     * @return Le tableau bidimensionnel représentant le graphe transpose.
+     * @return Le tableau bidimensionnel representant le graphe transpose.
      */
     private int[][] creerMatriceTransposee(int[][] matrice){
         int[][] matriceTransposee = new int[matrice.length][matrice.length];
 
-        // Initialise le tableau à 0.
+        // Initialise le tableau a 0.
         for (int i = 0; i < matrice.length; i++) {
             for (int j = 0; j < matrice.length; j++) {
                 matriceTransposee[i][j] = 0;
             }
         }
 
-        // Détermine les arcs du graphe. Si (i,j) = 1 alors dans le nouveau graphe, on a (j,i) = 1.
+        // Determine les arcs du graphe. Si (i,j) = 1 alors dans le nouveau graphe, on a (j,i) = 1.
         for (int i = 0; i < matrice.length; i++) {
             for (int j = 0; j < matrice.length; j++) {
                 if (matrice[i][j] == 1)

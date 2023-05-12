@@ -1,14 +1,14 @@
 /**
- * Represente un Litteral dans les clauses
+ * Represente un Litteral dans les clauses.
  */
 public class Litteral {
 
     // Les litteraux sont uniques. Chacun se differencie de l'autre via la lettre qu'il lui a ete attribue.
     private char idLettre;
-    // Stocke le numéro de la variable
+    // Stocke le numero de la variable
     private int idInt;
 
-    // Pour déterminer si c'est un neg-litterale (précédé d'un non ou pas)
+    // Pour determiner si c'est un neg-litterale (precede d'un non ou pas)
     private boolean neg;
 
     // Le litteral entier (avec neg s'il y est)
@@ -26,8 +26,8 @@ public class Litteral {
     }
 
     /**
-     * Retourne la négation du litteral. Si on a x, on crée et retourne non(x)
-     * @return litteral inverse de {@code this}
+     * Retourne la negation du litteral. Si on a x, on cree et retourne non(x).
+     * @return litteral inverse de {@code this}.
      */
     public Litteral negLitteral(){
         if (neg)
@@ -36,16 +36,16 @@ public class Litteral {
     }
 
     /**
-     * Retourne l'ID du litteral
-     * @return l'ID du litteral
+     * Retourne l'ID du litteral.
+     * @return l'ID du litteral.
      */
     public int getId() {
         return idInt;
     }
 
     /**
-     * Retourne le litteral sous forme de string
-     * @return String qui correspond au litteral. Ex : "!x" ou "x"
+     * Retourne le litteral sous forme de string.
+     * @return String qui correspond au litteral. Ex : "!x" ou "x".
      */
     public String litteralToString(){
         if(neg)
@@ -54,22 +54,22 @@ public class Litteral {
     }
 
     /**
-     * Convertit l'ID numérique du litteral en une lettre et stocke le résultat dans {@code this.idLettre}.
+     * Convertit l'ID numerique du litteral en une lettre et stocke le resultat dans {@code this.idLettre}.
      */
     private void setIds(){
         int indice = 0;
         if(neg)
             indice = 1;
-        // On convertit le numéro obtenu en int. Puis on l'ajoute à 'w' pour obtenir la ième lettre après 'w'.
+        // On convertit le numero obtenu en int. Puis on l'ajoute a 'w' pour obtenir la ieme lettre apres 'w'.
         if(indice==1)
-            idInt = Integer.parseInt(litteral.substring(1)); // extrait la sous-chaîne a partir de l'indice 1
+            idInt = Integer.parseInt(litteral.substring(1)); // extrait la sous-chaine a partir de l'indice 1
         else
             idInt = Integer.parseInt(litteral);
         idLettre= (char) ('a'-1+ idInt);
     }
 
     /**
-     * Détermine si le litteral est précédé d'un signe négatif.
+     * Determine si le litteral est precede d'un signe negatif.
      */
     private void setNeg(){
         if(litteral.charAt(0) == '-') {
@@ -80,8 +80,8 @@ public class Litteral {
     }
 
     /**
-     * Retourne si le litteral est précédé d'un signe négatif.
-     * @return true si le litteral est précédé d'un signe négatif, false sinon.
+     * Retourne si le litteral est precede d'un signe negatif.
+     * @return true si le litteral est precede d'un signe negatif, false sinon.
      */
     public boolean getNeg(){
         return neg;

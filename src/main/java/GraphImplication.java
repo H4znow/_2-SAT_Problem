@@ -24,7 +24,7 @@ public class GraphImplication implements Graph {
 
     /**
      * Constructeur de la classe
-     * @param conj la conjonction (ensemble des clauses) qu'il utilise pour déduire les implications entre littéraux
+     * @param conj la conjonction (ensemble des clauses) qu'il utilise pour deduire les implications entre litteraux
      */
     public GraphImplication(Conjonctions conj){
         this.conj= conj;
@@ -50,12 +50,12 @@ public class GraphImplication implements Graph {
     }
 
     /**
-     * Méthode pour initialiser dans un premier temps le tableau à 0. Elle détermine ensuite les arcs en remplissant
+     * Methode pour initialiser dans un premier temps le tableau a 0. Elle determine ensuite les arcs en remplissant
      * le tableau via {@code this.determinerLesArcDuGraph}
      */
     private void initialiserGraph(){
         graphMatrice = new int[2*conj.getNombreLitterauxTotaux()][2*conj.getNombreLitterauxTotaux()]; //2 fois car les
-        //les littéraux sont en double (x et !x)
+        //les litteraux sont en double (x et !x)
         for (int i = 0; i < graphMatrice.length; i++) {
             for (int j = 0; j < graphMatrice.length; j++) {
                 graphMatrice[i][j] = 0;
@@ -65,7 +65,7 @@ public class GraphImplication implements Graph {
     }
 
     /**
-     * Méthode pour déterminer les arcs.
+     * Methode pour determiner les arcs.
      * Fonctionnement :
      * A) Parcours les clauses une par une.
      *  Pour la clause une (l1 v l2)

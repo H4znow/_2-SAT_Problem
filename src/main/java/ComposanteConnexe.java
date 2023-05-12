@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
 /**
- * Classe qui représente les composantes connexes : les littéraux qu'elle contient.
+ * Classe qui represente les composantes connexes : les litteraux qu'elle contient.
  */
 public class ComposanteConnexe {
 
-    // Littéraux dans la composante connexe
+    // Litteraux dans la composante connexe
     private ArrayList<Litteral> litteraux;
 
     /**
@@ -16,7 +16,7 @@ public class ComposanteConnexe {
     }
 
     /**
-     * Méthode pour ajouter un littéral dans la composante connexe.
+     * Methode pour ajouter un litteral dans la composante connexe.
      * @param litteral nouveau {@link Litteral} qu'on ajoute.
      */
     public void add(Litteral litteral) {
@@ -24,8 +24,8 @@ public class ComposanteConnexe {
     }
 
     /**
-     * Vérifie si la clause contient un littéral ainsi que sa négation. Si oui, elle retourne vrai.
-     * @return {@code true} si la clause contient un littéral ainsi que sa négation. Autrement, elle retourne {@code false}.
+     * Verifie si la clause contient un litteral ainsi que sa negation. Si oui, elle retourne vrai.
+     * @return {@code true} si la clause contient un litteral ainsi que sa negation. Autrement, elle retourne {@code false}.
      */
     public boolean contient_Litteral_Et_Sa_Negation() {
         for (int i = 0; i < litteraux.size(); i++) {
@@ -33,7 +33,7 @@ public class ComposanteConnexe {
             for (int j = 0; j < litteraux.size(); j++) {
                 if ((negationLitteral.getId() == litteraux.get(j).getId()) && (negationLitteral.getNeg() == litteraux.get(j).getNeg())) {
                     //Si les deux litteraux ont le meme ID et les deux ont le meme "signe"
-                    return true; // Alors la clause contient un littéral et son opposé.
+                    return true; // Alors la clause contient un litteral et son oppose.
                 }
             }
         }
